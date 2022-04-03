@@ -1,0 +1,35 @@
+﻿<Window x:Class="Gusev_ITMO_WPF_Lab11.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="350" Width="330">
+    <Window.Resources>
+        <RectangleGeometry x:Key="rect" Rect="0 0 275 25" >
+            <RectangleGeometry.Transform>
+                <TransformGroup>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform X="45" Y="235"/>
+                </TransformGroup>
+            </RectangleGeometry.Transform>
+        </RectangleGeometry>
+        <EllipseGeometry x:Key="Ellipse1" Center="150 150" RadiusX="150" RadiusY="150"/>
+        <EllipseGeometry x:Key="Ellipse2" Center="150 150" RadiusX="125" RadiusY="125"/>
+        <CombinedGeometry x:Key="donut" GeometryCombineMode="Xor"
+                    Geometry1="{StaticResource Ellipse1}" 
+                    Geometry2="{StaticResource Ellipse2}"/>
+        <Style TargetType="Path">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Fill" Value="Red"/>
+            <Setter Property="Stroke" Value="Gray"/>
+            <Setter Property="StrokeThickness" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Path>
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Union"
+                    Geometry1="{StaticResource donut}" 
+                    Geometry2="{StaticResource rect}"/>
+            </Path.Data>
+        </Path>
+    </StackPanel>
+</Window>
